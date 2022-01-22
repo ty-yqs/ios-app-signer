@@ -50,11 +50,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     
                     
                     if error != nil {
-                        alert.messageText = "There was a problem checking for a new version."
-                        alert.informativeText = "More information is available in the application log."
+                        alert.messageText = "检查新版本时出现问题"
+                        alert.informativeText = "更多信息可在应用日志中找到"
                         Log.write(error!.localizedDescription)
                     } else {
-                        alert.messageText = "You are currently running the latest version."
+                        alert.messageText = "您当前正在运行最新版本"
                     }
                     alert.runModal()
                 }

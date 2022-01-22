@@ -157,17 +157,17 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
             populateCodesigningCerts()
             if let defaultCert = defaults.string(forKey: "signingCertificate") {
                 if codesigningCerts.contains(defaultCert) {
-                    Log.write("Loaded Codesigning Certificate from Defaults: \(defaultCert)")
+                    Log.write("从默认证书加载: \(defaultCert)")
                     CodesigningCertsPopup.selectItem(withTitle: defaultCert)
                 }
             }
-            setStatus("Ready")
+            setStatus("已准备好")
             if checkXcodeCLI() == false {
                 if #available(OSX 10.10, *) {
                     let _ = installXcodeCLI()
                 } else {
                     let alert = NSAlert()
-                    alert.messageText = "Please install the Xcode command line tools and re-launch this application."
+                    alert.messageText = "请安装Xcode命令行工具并重新启动此应用程序"
                     alert.runModal()
                 }
                 
@@ -221,11 +221,11 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
         self.provisioningProfiles = ProvisioningProfile.getProfiles().sorted {
             ($0.name == $1.name && $0.created.timeIntervalSince1970 > $1.created.timeIntervalSince1970) || $0.name < $1.name
         }
-        setStatus("Found \(provisioningProfiles.count) Provisioning Profile\(provisioningProfiles.count>1 || provisioningProfiles.count<1 ? "s":"")")
+        setStatus("已发现 \(provisioningProfiles.count) 个描述文件 \(provisioningProfiles.count>1 || provisioningProfiles.count<1 ? "s":"")")
         ProvisioningProfilesPopup.removeAllItems()
         ProvisioningProfilesPopup.addItems(withTitles: [
-            "Re-Sign Only",
-            "Choose Custom File",
+            "只重签名",
+            "选择文件",
             "––––––––––––––––––––––"
         ])
         let formatter = DateFormatter()
@@ -248,9 +248,9 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                     "Expires: \(formatter.string(from: profile.expires as Date))"
                 ]
                 ProvisioningProfilesPopup.lastItem!.toolTip = toolTipItems.joined(separator: "\n")
-                setStatus("Added profile \(profile.appID), expires (\(formatter.string(from: profile.expires as Date)))")
+                setStatus("添加描述文件 \(profile.appID), 将在 (\(formatter.string(from: profile.expires as Date))) 过期")
             } else {
-                setStatus("Skipped profile \(profile.appID), expired (\(formatter.string(from: profile.expires as Date)))")
+                setStatus("跳过描述文件 \(profile.appID), 已在 (\(formatter.string(from: profile.expires as Date))) 过期")
             }
         }
         self.provisioningProfiles = newProfiles
@@ -277,8 +277,8 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
     
     @objc func showCodesignCertsErrorAlert(){
         let alert = NSAlert()
-        alert.messageText = "No codesigning certificates found"
-        alert.informativeText = "I can attempt to fix this automatically, would you like me to try?"
+        alert.messageText = "没有已发现的签名证书"
+        alert.informativeText = "我应该可以尝试自动修复此问题，想让我试试吗？"
         alert.addButton(withTitle: "Yes")
         alert.addButton(withTitle: "No")
         if alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn {
@@ -294,11 +294,11 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
         CodesigningCertsPopup.removeAllItems()
         self.codesigningCerts = getCodesigningCerts()
         
-        setStatus("Found \(self.codesigningCerts.count) Codesigning Certificate\(self.codesigningCerts.count>1 || self.codesigningCerts.count<1 ? "s":"")")
+        setStatus("已找到 \(self.codesigningCerts.count) 个签名证书 \(self.codesigningCerts.count>1 || self.codesigningCerts.count<1 ? "s":"")")
         if self.codesigningCerts.count > 0 {
             for cert in self.codesigningCerts {
                 CodesigningCertsPopup.addItem(withTitle: cert)
-                setStatus("Added signing certificate \"\(cert)\"")
+                setStatus("已添加签名证书 \"\(cert)\"")
             }
         } else {
             showCodesignCertsErrorAlert()
@@ -309,10 +309,10 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
     func checkProfileID(_ profile: ProvisioningProfile?){
         if let profile = profile {
             self.profileFilename = profile.filename
-            setStatus("Selected provisioning profile \(profile.appID)")
+            setStatus("已选择描述文件 \(profile.appID)")
             if profile.expires.timeIntervalSince1970 < Date().timeIntervalSince1970 {
                 ProvisioningProfilesPopup.selectItem(at: 0)
-                setStatus("Provisioning profile expired")
+                setStatus("描述文件已过期")
                 chooseProvisioningProfile(ProvisioningProfilesPopup)
             }
             if profile.appID.firstIndex(of: "*") == nil {
@@ -328,7 +328,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
             }
         } else {
             ProvisioningProfilesPopup.selectItem(at: 0)
-            setStatus("Invalid provisioning profile")
+            setStatus("无效的描述文件")
             chooseProvisioningProfile(ProvisioningProfilesPopup)
         }
     }
@@ -403,7 +403,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
             var machOFile = data.elementsEqual([0xCE, 0xFA, 0xED, 0xFE]) || data.elementsEqual([0xCF, 0xFA, 0xED, 0xFE]) || data.elementsEqual([0xCA, 0xFE, 0xBA, 0xBE])
             
             if machOFile == false && signableExtensions.contains(path.lastPathComponent.pathExtension.lowercased()) {
-                Log.write("Detected binary by extension: \(path)")
+                Log.write("通过扩展检测到二进制文件: \(path)")
                 machOFile = true
             }
             return machOFile
@@ -420,10 +420,10 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
     
     @objc func cleanup(_ tempFolder: String){
         do {
-            Log.write("Deleting: \(tempFolder)")
+            Log.write("删除: \(tempFolder)")
             try fileManager.removeItem(atPath: tempFolder)
         } catch let error as NSError {
-            setStatus("Unable to delete temp folder")
+            setStatus("无法删除临时文件夹")
             Log.write(error.localizedDescription)
         }
         controlsEnabled(true)
@@ -465,7 +465,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
             do {
                 try fileManager.moveItem(at: location, to: URL(fileURLWithPath: downloadPath))
             } catch let error as NSError {
-                setStatus("Unable to move downloaded file")
+                setStatus("无法移动下载的文件")
                 Log.write(error.localizedDescription)
             }
         }
@@ -520,7 +520,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
 
         let codesignTask = Process().execute(codesignPath, workingDirectory: nil, arguments: arguments)
         if codesignTask.status != 0 {
-            Log.write("Error codesign: \(codesignTask.output)")
+            Log.write("代码签名失败: \(codesignTask.output)")
         }
         
         if let afterFunc = after {
@@ -545,7 +545,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                 return false
             }
         } else {
-            setStatus("Error testing codesign")
+            setStatus("测试代码签名失败")
         }
         return nil
     }
@@ -606,7 +606,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
         
         // Check signing certificate selection
         if signingCertificate == nil {
-            setStatus("No signing certificate selected")
+            setStatus("没有选择签名证书")
             return
         }
         
@@ -615,9 +615,9 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
         if !inputStartsWithHTTP && !fileManager.fileExists(atPath: inputFile, isDirectory: &inputIsDirectory){
             DispatchQueue.main.async(execute: {
                 let alert = NSAlert()
-                alert.messageText = "Input file not found"
+                alert.messageText = "输入文件未找到"
                 alert.addButton(withTitle: "OK")
-                alert.informativeText = "The file \(inputFile) could not be found"
+                alert.informativeText = "文件 \(inputFile) 不能被找到"
                 alert.runModal()
                 self.controlsEnabled(true)
             })
@@ -629,7 +629,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
         if let tmpFolder = makeTempFolder() {
             tempFolder = tmpFolder
         } else {
-            setStatus("Error creating temp folder")
+            setStatus("创建临时文件夹时出错")
             return
         }
         let workingDirectory = tempFolder.stringByAppendingPathComponent("out")
@@ -637,9 +637,9 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
         let payloadDirectory = workingDirectory.stringByAppendingPathComponent("Payload/")
         let entitlementsPlist = tempFolder.stringByAppendingPathComponent("entitlements.plist")
         
-        Log.write("Temp folder: \(tempFolder)")
-        Log.write("Working directory: \(workingDirectory)")
-        Log.write("Payload directory: \(payloadDirectory)")
+        Log.write("临时文件夹: \(tempFolder)")
+        Log.write("工作文件夹: \(workingDirectory)")
+        Log.write("载荷文件夹: \(payloadDirectory)")
         
         //MARK: Codesign Test
         
@@ -647,10 +647,10 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
             if let codesignResult = self.testSigning(signingCertificate!, tempFolder: tempFolder) {
                 if codesignResult == false {
                     let alert = NSAlert()
-                    alert.messageText = "Codesigning error"
+                    alert.messageText = "代码签名失败"
                     alert.addButton(withTitle: "Yes")
                     alert.addButton(withTitle: "No")
-                    alert.informativeText = "You appear to have a error with your codesigning certificate, do you want me to try and fix the problem?"
+                    alert.informativeText = "您的代码签名证书似乎有错误，是否希望我尝试解决此问题？"
                     let response = alert.runModal()
                     if response == NSApplication.ModalResponse.alertFirstButtonReturn {
                         iASShared.fixSigning(tempFolder)
@@ -658,7 +658,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                             let errorAlert = NSAlert()
                             errorAlert.messageText = "Unable to Fix"
                             errorAlert.addButton(withTitle: "OK")
-                            errorAlert.informativeText = "I was unable to automatically resolve your codesigning issue ☹\n\nIf you have previously trusted your certificate using Keychain, please set the Trust setting back to the system default."
+                            errorAlert.informativeText = "我无法自动解决您的代码签名问题☹\n\n如果您以前使用钥匙串信任您的证书，请将信任设置调回系统默认值。"
                             errorAlert.runModal()
                             continueSigning = false
                             return
@@ -688,7 +688,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
         do {
             try fileManager.createDirectory(atPath: eggDirectory, withIntermediateDirectories: true, attributes: nil)
         } catch let error as NSError {
-            setStatus("Error creating egg temp directory")
+            setStatus("创建临时目录时出错")
             Log.write(error.localizedDescription)
             cleanup(tempFolder); return
         }
@@ -705,7 +705,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                 downloading = true
                 
                 let downloadTask = defaultSession.downloadTask(with: url)
-                setStatus("Downloading file")
+                setStatus("下载文件")
                 DispatchQueue.main.async {
                     self.downloadProgress.isHidden = false
                 }
@@ -718,7 +718,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                 usleep(100000)
             }
             if downloadError != nil {
-                setStatus("Error downloading file, \(downloadError!.localizedDescription.lowercased())")
+                setStatus("下载文件失败, \(downloadError!.localizedDescription.lowercased())")
                 cleanup(tempFolder); return
             } else {
                 inputFile = downloadPath
@@ -734,11 +734,11 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                 
                 try fileManager.createDirectory(atPath: debPath, withIntermediateDirectories: true, attributes: nil)
                 try fileManager.createDirectory(atPath: workingDirectory, withIntermediateDirectories: true, attributes: nil)
-                setStatus("Extracting deb file")
+                setStatus("提取deb文件")
                 let debTask = Process().execute(arPath, workingDirectory: debPath, arguments: ["-x", inputFile])
                 Log.write(debTask.output)
                 if debTask.status != 0 {
-                    setStatus("Error processing deb file")
+                    setStatus("处理deb文件时出错")
                     cleanup(tempFolder); return
                 }
                 
@@ -747,7 +747,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                     let dataPath = debPath.stringByAppendingPathComponent("data.\(tarFormat)")
                     if fileManager.fileExists(atPath: dataPath){
                         
-                        setStatus("Unpacking data.\(tarFormat)")
+                        setStatus("解包数据.\(tarFormat)")
                         let tarTask = Process().execute(tarPath, workingDirectory: debPath, arguments: ["-xf",dataPath])
                         Log.write(tarTask.output)
                         if tarTask.status == 0 {
@@ -757,7 +757,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                     }
                 }
                 if !tarUnpacked {
-                    setStatus("Error unpacking data.tar")
+                    setStatus("解包 data.tar 时出错")
                     cleanup(tempFolder); return
                 }
               
@@ -769,7 +769,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
               try fileManager.moveItem(atPath: sourcePath, toPath: payloadDirectory)
                 
             } catch {
-                setStatus("Error processing deb file")
+                setStatus("处理deb文件时出错")
                 cleanup(tempFolder); return
             }
             
@@ -777,55 +777,55 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
             //MARK: --Unzip ipa
             do {
                 try fileManager.createDirectory(atPath: workingDirectory, withIntermediateDirectories: true, attributes: nil)
-                setStatus("Extracting ipa file")
+                setStatus("提取ipa文件")
                 
                 let unzipTask = self.unzip(inputFile, outputPath: workingDirectory)
                 if unzipTask.status != 0 {
-                    setStatus("Error extracting ipa file")
+                    setStatus("提取ipa文件时出错")
                     cleanup(tempFolder); return
                 }
             } catch {
-                setStatus("Error extracting ipa file")
+                setStatus("提取ipa文件时出错")
                 cleanup(tempFolder); return
             }
             
         case "app", "appex":
             //MARK: --Copy app bundle
             if !inputIsDirectory.boolValue {
-                setStatus("Unsupported input file")
+                setStatus("不支持的输入文件")
                 cleanup(tempFolder); return
             }
             do {
                 try fileManager.createDirectory(atPath: payloadDirectory, withIntermediateDirectories: true, attributes: nil)
-                setStatus("Copying app to payload directory")
+                setStatus("正在将应用程序复制到有效负载目录")
                 try fileManager.copyItem(atPath: inputFile, toPath: payloadDirectory.stringByAppendingPathComponent(inputFile.lastPathComponent))
             } catch {
-                setStatus("Error copying app to payload directory")
+                setStatus("将应用程序复制到有效负载目录时出错")
                 cleanup(tempFolder); return
             }
             
         case "xcarchive":
             //MARK: --Copy app bundle from xcarchive
             if !inputIsDirectory.boolValue {
-                setStatus("Unsupported input file")
+                setStatus("不支持的输入文件")
                 cleanup(tempFolder); return
             }
             do {
                 try fileManager.createDirectory(atPath: workingDirectory, withIntermediateDirectories: true, attributes: nil)
-                setStatus("Copying app to payload directory")
+                setStatus("正在将应用程序复制到有效负载目录")
                 try fileManager.copyItem(atPath: inputFile.stringByAppendingPathComponent("Products/Applications/"), toPath: payloadDirectory)
             } catch {
-                setStatus("Error copying app to payload directory")
+                setStatus("将应用程序复制到有效负载目录时出错")
                 cleanup(tempFolder); return
             }
             
         default:
-            setStatus("Unsupported input file")
+            setStatus("不支持的输入文件")
             cleanup(tempFolder); return
         }
         
         if !fileManager.fileExists(atPath: payloadDirectory){
-            setStatus("Payload directory doesn't exist")
+            setStatus("有效负载目录不存在")
             cleanup(tempFolder); return
         }
         
@@ -851,20 +851,20 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                 //MARK: Copy Provisioning Profile
                 if provisioningFile != nil {
                     if fileManager.fileExists(atPath: appBundleProvisioningFilePath) {
-                        setStatus("Deleting embedded.mobileprovision")
+                        setStatus("删除 embedded.mobileprovision")
                         do {
                             try fileManager.removeItem(atPath: appBundleProvisioningFilePath)
                         } catch let error as NSError {
-                            setStatus("Error deleting embedded.mobileprovision")
+                            setStatus("删除 embedded.mobileprovision 失败")
                             Log.write(error.localizedDescription)
                             cleanup(tempFolder); return
                         }
                     }
-                    setStatus("Copying provisioning profile to app bundle")
+                    setStatus("将描述文件复制到应用程序包")
                     do {
                         try fileManager.copyItem(atPath: provisioningFile!, toPath: appBundleProvisioningFilePath)
                     } catch let error as NSError {
-                        setStatus("Error copying provisioning profile")
+                        setStatus("复制描述文件失败")
                         Log.write(error.localizedDescription)
                         cleanup(tempFolder); return
                     }
@@ -874,7 +874,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                 
                 //MARK: Generate entitlements.plist
                 if provisioningFile != nil || useAppBundleProfile {
-                    setStatus("Parsing entitlements")
+                    setStatus("分析权限")
                     
                     if var profile = ProvisioningProfile(filename: useAppBundleProfile ? appBundleProvisioningFilePath : provisioningFile!){
                         if shouldSkipGetTaskAllow {
@@ -882,7 +882,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                         }
                         let isWildcard = profile.appID == "*" // TODO: support com.example.* wildcard
                         if !isWildcard && (newApplicationID != "" && newApplicationID != profile.appID) {
-                            setStatus("Unable to change App ID to \(newApplicationID), provisioning profile won't allow it")
+                            setStatus("更改appID到 \(newApplicationID) 失败, 描述文件不允许")
                             cleanup(tempFolder); return
                         } else if isWildcard {
                             if newApplicationID != "" {
@@ -896,16 +896,16 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                             Log.write("–––––––––––––––––––––––")
                             do {
                                 try entitlements.write(toFile: entitlementsPlist, atomically: false, encoding: .utf8)
-                                setStatus("Saved entitlements to \(entitlementsPlist)")
+                                setStatus("保存权限到 \(entitlementsPlist)")
                             } catch let error as NSError {
-                                setStatus("Error writing entitlements.plist, \(error.localizedDescription)")
+                                setStatus("写入 entitlements.plist 失败, \(error.localizedDescription)")
                             }
                         } else {
-                            setStatus("Unable to read entitlements from provisioning profile")
+                            setStatus("无法从文件读取权限")
                             warnings += 1
                         }
                     } else {
-                        setStatus("Unable to parse provisioning profile, it may be corrupt")
+                        setStatus("无法分析描述文件，它可能已损坏")
                         warnings += 1
                     }
                     
@@ -928,7 +928,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                             let appexPlist = appexFile.stringByAppendingPathComponent("Info.plist")
                             if let appexBundleID = getPlistKey(appexPlist, keyName: "CFBundleIdentifier"){
                                 let newAppexID = "\(newApplicationID)\(appexBundleID.substring(from: oldAppID.endIndex))"
-                                setStatus("Changing \(appexFile) id to \(newAppexID)")
+                                setStatus("更改 \(appexFile) id 到 \(newAppexID)")
                                 _ = setPlistKey(appexPlist, keyName: "CFBundleIdentifier", value: newAppexID)
                             }
                             if Process().execute(defaultsPath, workingDirectory: nil, arguments: ["read", appexPlist,"WKCompanionAppBundleIdentifier"]).status == 0 {
@@ -948,10 +948,10 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                         recursiveDirectorySearch(appBundlePath, extensions: ["appex"], found: changeAppexID)
                     }
                     
-                    setStatus("Changing App ID to \(newApplicationID)")
+                    setStatus("更改appID 到 \(newApplicationID)")
                     let IDChangeTask = setPlistKey(appBundleInfoPlist, keyName: "CFBundleIdentifier", value: newApplicationID)
                     if IDChangeTask.status != 0 {
-                        setStatus("Error changing App ID")
+                        setStatus("更改 appID 失败")
                         Log.write(IDChangeTask.output)
                         cleanup(tempFolder); return
                     }
@@ -959,10 +959,10 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                 
                 //MARK: Change Display Name
                 if newDisplayName != "" {
-                    setStatus("Changing Display Name to \(newDisplayName))")
+                    setStatus("更改 app 名称到 \(newDisplayName))")
                     let displayNameChangeTask = Process().execute(defaultsPath, workingDirectory: nil, arguments: ["write",appBundleInfoPlist,"CFBundleDisplayName", newDisplayName])
                     if displayNameChangeTask.status != 0 {
-                        setStatus("Error changing display name")
+                        setStatus("更改 app 名称失败")
                         Log.write(displayNameChangeTask.output)
                         cleanup(tempFolder); return
                     }
@@ -970,10 +970,10 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                 
                 //MARK: Change Version
                 if newVersion != "" {
-                    setStatus("Changing Version to \(newVersion)")
+                    setStatus("更改版本失败 \(newVersion)")
                     let versionChangeTask = Process().execute(defaultsPath, workingDirectory: nil, arguments: ["write",appBundleInfoPlist,"CFBundleVersion", newVersion])
                     if versionChangeTask.status != 0 {
-                        setStatus("Error changing version")
+                        setStatus("更改版本失败")
                         Log.write(versionChangeTask.output)
                         cleanup(tempFolder); return
                     }
@@ -981,10 +981,10 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                 
                 //MARK: Change Short Version
                 if newShortVersion != "" {
-                    setStatus("Changing Short Version to \(newShortVersion)")
+                    setStatus("更改短版本到 \(newShortVersion)")
                     let shortVersionChangeTask = Process().execute(defaultsPath, workingDirectory: nil, arguments: ["write",appBundleInfoPlist,"CFBundleShortVersionString", newShortVersion])
                     if shortVersionChangeTask.status != 0 {
-                        setStatus("Error changing short version")
+                        setStatus("更改短版本失败")
                         Log.write(shortVersionChangeTask.output)
                         cleanup(tempFolder); return
                     }
@@ -1036,12 +1036,12 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                     }
                     
                     func beforeFunc(_ file: String, certificate: String, entitlements: String?){
-                            setStatus("Codesigning \(shortName(file, payloadDirectory: payloadDirectory))\(useEntitlements ? " with entitlements":"")")
+                            setStatus("代码签名 \(shortName(file, payloadDirectory: payloadDirectory))\(useEntitlements ? " 使用权限":"")")
                     }
                     
                     func afterFunc(_ file: String, certificate: String, entitlements: String?, codesignOutput: AppSignerTaskOutput){
                         if codesignOutput.status != 0 {
-                            setStatus("Error codesigning \(shortName(file, payloadDirectory: payloadDirectory))")
+                            setStatus("代码签名失败 \(shortName(file, payloadDirectory: payloadDirectory))")
                             Log.write(codesignOutput.output)
                             warnings += 1
                         }
@@ -1060,14 +1060,14 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                     
                     let currentEggPath = eggDirectory.stringByAppendingPathComponent("egg\(eggCount)")
                     let shortName = eggFile.substring(from: payloadDirectory.endIndex)
-                    setStatus("Extracting \(shortName)")
+                    setStatus("提取 \(shortName)")
                     if self.unzip(eggFile, outputPath: currentEggPath).status != 0 {
                         Log.write("Error extracting \(shortName)")
                         return
                     }
                     recursiveDirectorySearch(currentEggPath, extensions: ["egg"], found: signEgg)
                     recursiveDirectorySearch(currentEggPath, extensions: signableExtensions, found: eggSigningFunction)
-                    setStatus("Compressing \(shortName)")
+                    setStatus("压缩 \(shortName)")
                     _ = self.zip(currentEggPath, outputFile: eggFile)                    
                 }
                 
@@ -1089,14 +1089,14 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                         alert.informativeText = verificationTask.output
                         alert.alertStyle = .critical
                         alert.runModal()
-                        self.setStatus("Error verifying code signature")
+                        self.setStatus("验证代码签名时出错")
                         Log.write(verificationTask.output)
                         self.cleanup(tempFolder); return
                     })
                 }
             }
         } catch let error as NSError {
-            setStatus("Error listing files in payload directory")
+            setStatus("列出有效负载目录中的文件时出错")
             Log.write(error.localizedDescription)
             cleanup(tempFolder); return
         }
@@ -1107,7 +1107,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
             do {
                 try fileManager.removeItem(atPath: outputFile!)
             } catch let error as NSError {
-                setStatus("Error deleting output file")
+                setStatus("删除输出文件时出错")
                 Log.write(error.localizedDescription)
                 cleanup(tempFolder)
                 return
@@ -1116,16 +1116,16 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
 
         switch outputFile?.pathExtension.lowercased() {
         case "ipa":
-            setStatus("Packaging IPA")
+            setStatus("打包IPA")
             let zipTask = self.zip(workingDirectory, outputFile: outputFile!)
             if zipTask.status != 0 {
-                setStatus("Error packaging IPA")
+                setStatus("打包IPA失败")
             }
         case "appex":
             do {
                 try fileManager.copyItem(atPath: payloadDirectory.stringByAppendingPathComponent(inputFile.lastPathComponent), toPath: outputFile!)
             } catch let error as NSError {
-                setStatus("Error copying appex bundle to \(outputFile!)")
+                setStatus("拷贝到 \(outputFile!) 失败")
                 Log.write(error.localizedDescription)
             }
         default:
@@ -1134,7 +1134,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
 
         //MARK: Cleanup
         cleanup(tempFolder)
-        setStatus("Done, output at \(outputFile!)")
+        setStatus("签名完成，文件路径: \(outputFile!)")
     }
 
     //MARK: IBActions
@@ -1186,7 +1186,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
         }
     }
     @IBAction func chooseSigningCertificate(_ sender: NSPopUpButton) {
-        Log.write("Set Codesigning Certificate Default to: \(sender.stringValue)")
+        Log.write("将代码签名证书默认设置为: \(sender.stringValue)")
         defaults.setValue(sender.selectedItem?.title, forKey: "signingCertificate")
     }
     

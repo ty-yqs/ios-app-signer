@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19158" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19158"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,25 +25,25 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="iOS App Signer" systemMenu="apple" id="uQy-DD-JDr">
                         <items>
-                            <menuItem title="About iOS App Signer" id="5kV-Vb-QxS">
+                            <menuItem title="关于 iOS App Signer" id="5kV-Vb-QxS">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="orderFrontStandardAboutPanel:" target="-1" id="Exp-CZ-Vem"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
-                            <menuItem title="Hide iOS App Signer" keyEquivalent="h" id="Olw-nP-bQN">
+                            <menuItem title="隐藏 iOS App Signer" keyEquivalent="h" id="Olw-nP-bQN">
                                 <connections>
                                     <action selector="hide:" target="-1" id="PnN-Uc-m68"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Hide Others" keyEquivalent="h" id="Vdr-fp-XzO">
+                            <menuItem title="隐藏其他" keyEquivalent="h" id="Vdr-fp-XzO">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="hideOtherApplications:" target="-1" id="VT4-aY-XCT"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Show All" id="Kd2-mp-pUS">
+                            <menuItem title="显示所有" id="Kd2-mp-pUS">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="unhideAllApplications:" target="-1" id="Dhg-Le-xox"/>
@@ -58,38 +58,38 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="Edit" id="T0b-wx-Gyg">
+                <menuItem title="编辑" id="T0b-wx-Gyg">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Edit" id="qdQ-IG-Yhb">
+                    <menu key="submenu" title="编辑" id="qdQ-IG-Yhb">
                         <items>
-                            <menuItem title="Cut" keyEquivalent="x" id="dLU-15-L3Q">
+                            <menuItem title="剪切" keyEquivalent="x" id="dLU-15-L3Q">
                                 <connections>
                                     <action selector="cut:" target="-1" id="juZ-RD-TwD"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Copy" keyEquivalent="c" id="I2a-rU-I1e">
+                            <menuItem title="复制" keyEquivalent="c" id="I2a-rU-I1e">
                                 <connections>
                                     <action selector="copy:" target="-1" id="49U-6M-gaf"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Paste" keyEquivalent="v" id="bNd-gi-pQp">
+                            <menuItem title="粘贴" keyEquivalent="v" id="bNd-gi-pQp">
                                 <connections>
                                     <action selector="paste:" target="-1" id="CZL-O2-ga7"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Paste and Match Style" keyEquivalent="V" id="deq-R6-yYd">
+                            <menuItem title="粘贴并匹配样式" keyEquivalent="V" id="deq-R6-yYd">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="pasteAsPlainText:" target="-1" id="Koy-TJ-aQZ"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Delete" id="Qhi-kk-eA0">
+                            <menuItem title="删除" id="Qhi-kk-eA0">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="delete:" target="-1" id="mEf-kl-Dgi"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Select All" keyEquivalent="a" id="i1V-dL-E0I">
+                            <menuItem title="全选" keyEquivalent="a" id="i1V-dL-E0I">
                                 <connections>
                                     <action selector="selectAll:" target="-1" id="8YW-ug-PZg"/>
                                 </connections>
@@ -97,11 +97,11 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="View" id="H8h-7b-M4v">
+                <menuItem title="视图" id="H8h-7b-M4v">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="View" id="HyV-fh-RgO">
+                    <menu key="submenu" title="视图" id="HyV-fh-RgO">
                         <items>
-                            <menuItem title="Application Log" id="6j5-Tf-Y4g">
+                            <menuItem title="应用日志" id="6j5-Tf-Y4g">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="viewLog:" target="aMe-uV-AHx" id="jXh-hs-BpO"/>
@@ -110,11 +110,11 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="Donate" id="2eI-1V-L75">
+                <menuItem title="捐赠" id="2eI-1V-L75">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Donate" id="T5I-ob-6B4">
+                    <menu key="submenu" title="捐赠" id="T5I-ob-6B4">
                         <items>
-                            <menuItem title="Buy Me A Drink" id="vr0-au-9q5" customClass="NSMenuLink" customModule="iOS_App_Signer" customModuleProvider="target">
+                            <menuItem title="给我买饮料" id="vr0-au-9q5" customClass="NSMenuLink" customModule="iOS_App_Signer" customModuleProvider="target">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="url" value="https://www.paypal.me/DanTheMan827"/>
@@ -126,11 +126,11 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="Help" id="wpr-3q-Mcd">
+                <menuItem title="帮助" id="wpr-3q-Mcd">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
+                    <menu key="submenu" title="帮助" systemMenu="help" id="F2S-fz-NVQ">
                         <items>
-                            <menuItem title="GitHub Project Page" keyEquivalent="?" id="FKE-Sm-Kum" customClass="NSMenuLink" customModule="iOS_App_Signer" customModuleProvider="target">
+                            <menuItem title="GitHub项目页面" keyEquivalent="?" id="FKE-Sm-Kum" customClass="NSMenuLink" customModule="iOS_App_Signer" customModuleProvider="target">
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="url" value="https://github.com/DanTheMan827/ios-app-signer"/>
                                 </userDefinedRuntimeAttributes>
@@ -138,13 +138,13 @@
                                     <action selector="nsMenuLinkClick:" target="aMe-uV-AHx" id="kuT-Sl-Lfb"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Update Apple WWDR Certificate" id="yW3-3F-UGM">
+                            <menuItem title="升级苹果WWDR证书" id="yW3-3F-UGM">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="fixSigning:" target="aMe-uV-AHx" id="11N-yH-9Q4"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Check for Updates" id="z6H-Tg-1uh">
+                            <menuItem title="检查更新" id="z6H-Tg-1uh">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="checkForUpdates:" target="aMe-uV-AHx" id="teq-CI-brW"/>
@@ -160,49 +160,49 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="550" height="242"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1055"/>
+            <rect key="contentRect" x="196" y="240" width="550" height="281"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
             <value key="minSize" type="size" width="550" height="242"/>
             <value key="maxSize" type="size" width="9999" height="242"/>
-            <view key="contentView" id="se5-gp-TjO" customClass="MainView" customModule="iOS_App_Signer" customModuleProvider="target">
-                <rect key="frame" x="0.0" y="0.0" width="550" height="284"/>
+            <view key="contentView" misplaced="YES" id="se5-gp-TjO" customClass="MainView" customModule="iOS_App_Signer" customModuleProvider="target">
+                <rect key="frame" x="0.0" y="0.0" width="550" height="281"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YSK-IJ-CeM">
-                        <rect key="frame" x="136" y="170" width="406" height="21"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="This is where you would change the application identifier" drawsBackground="YES" id="395-ue-2J0">
+                        <rect key="frame" x="98" y="170" width="444" height="21"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="这是更改应用程序标识符的地方" drawsBackground="YES" id="395-ue-2J0">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YJU-Yl-45B">
-                        <rect key="frame" x="6" y="229" width="124" height="16"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Signing Certificate:" id="WUr-cp-F8p">
-                            <font key="font" metaFont="system"/>
+                        <rect key="frame" x="6" y="229" width="86" height="16"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="签名证书" id="WUr-cp-F8p">
+                            <font key="font" size="13" name=".PingFangSC-Regular"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tPN-Hd-sKi">
-                        <rect key="frame" x="6" y="172" width="124" height="16"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="New Application ID:" id="WPy-tB-bJ4">
-                            <font key="font" metaFont="system"/>
+                        <rect key="frame" x="6" y="172" width="86" height="16"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="新的 appID" id="WPy-tB-bJ4">
+                            <font key="font" size="13" name=".PingFangSC-Regular"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4Sa-9c-2wd">
-                        <rect key="frame" x="6" y="257" width="124" height="16"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Input File:" id="ZCT-YD-39f">
-                            <font key="font" metaFont="system"/>
+                        <rect key="frame" x="6" y="257" width="86" height="16"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="输入文件:" id="ZCT-YD-39f">
+                            <font key="font" size="13" name=".PingFangSC-Regular"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Q7q-HU-46D">
-                        <rect key="frame" x="485" y="26" width="64" height="32"/>
-                        <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ox8-ir-pSO">
+                        <rect key="frame" x="487" y="26" width="62" height="32"/>
+                        <buttonCell key="cell" type="push" title="开始" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ox8-ir-pSO">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -211,17 +211,17 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jID-Ce-koR">
-                        <rect key="frame" x="470" y="248" width="79" height="32"/>
-                        <buttonCell key="cell" type="push" title="Browse" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="G75-5L-8SZ">
+                        <rect key="frame" x="489" y="248" width="60" height="32"/>
+                        <buttonCell key="cell" type="push" title="选择" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="G75-5L-8SZ">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
+                            <font key="font" size="13" name=".PingFangSC-Regular"/>
                         </buttonCell>
                         <connections>
                             <action selector="doBrowse:" target="se5-gp-TjO" id="ORw-wR-urv"/>
                         </connections>
                     </button>
                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aVt-Sy-tta">
-                        <rect key="frame" x="133" y="223" width="413" height="25"/>
+                        <rect key="frame" x="95" y="223" width="451" height="25"/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="Yf9-38-1CN">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -238,7 +238,7 @@
                         </connections>
                     </popUpButton>
                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4SO-6J-jzo">
-                        <rect key="frame" x="133" y="195" width="413" height="25"/>
+                        <rect key="frame" x="95" y="195" width="451" height="25"/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="xup-Rd-N3A">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -255,32 +255,32 @@
                         </connections>
                     </popUpButton>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DTS-Xr-BlP">
-                        <rect key="frame" x="6" y="201" width="124" height="16"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Provisioning Profile:" id="aX0-sJ-gW1">
-                            <font key="font" metaFont="system"/>
+                        <rect key="frame" x="6" y="201" width="86" height="16"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="描述文件" id="aX0-sJ-gW1">
+                            <font key="font" size="13" name=".PingFangSC-Regular"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GdX-jd-F08">
-                        <rect key="frame" x="136" y="255" width="333" height="21"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="File path or URL accepted" drawsBackground="YES" usesSingleLineMode="YES" id="fri-IK-93r">
+                        <rect key="frame" x="98" y="255" width="390" height="21"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="文件路径或链接" drawsBackground="YES" usesSingleLineMode="YES" id="fri-IK-93r">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qJN-16-XSx">
-                        <rect key="frame" x="136" y="141" width="406" height="21"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="This changes the app title on the home screen" drawsBackground="YES" id="KLQ-qo-m8y">
+                        <rect key="frame" x="98" y="141" width="444" height="21"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="这将更改主屏幕上的 App 名称" drawsBackground="YES" id="KLQ-qo-m8y">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Zay-Rf-RG2">
-                        <rect key="frame" x="6" y="143" width="124" height="16"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="App Display Name:" id="pA5-gE-hQU">
+                        <rect key="frame" x="6" y="143" width="86" height="16"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="App 显示名称" id="pA5-gE-hQU">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -319,70 +319,70 @@
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ciM-lE-ANv">
-                        <rect key="frame" x="6" y="114" width="124" height="16"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="App Version:" id="j50-ne-bw4">
+                        <rect key="frame" x="6" y="114" width="86" height="16"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="App 版本" id="j50-ne-bw4">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QZI-Qs-VwV">
-                        <rect key="frame" x="136" y="112" width="248" height="21"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="This changes the app version number" drawsBackground="YES" id="2PE-H9-BWc">
+                        <rect key="frame" x="98" y="112" width="252" height="21"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="这将更改应用程序版本号" drawsBackground="YES" id="2PE-H9-BWc">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <button toolTip="Don't resign extension bundles as they might contain their own code signature" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cco-fM-ZOR">
-                        <rect key="frame" x="390" y="113" width="152" height="18"/>
-                        <buttonCell key="cell" type="check" title="Ignore PlugIns folder" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Nw2-Zf-Zab">
+                        <rect key="frame" x="356" y="113" width="186" height="18"/>
+                        <buttonCell key="cell" type="check" title="忽视应用程序内的插件目录" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Nw2-Zf-Zab">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XPd-ts-72C">
-                        <rect key="frame" x="136" y="61" width="406" height="21"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="This changes the app short version number" drawsBackground="YES" id="Y13-6l-O4U">
+                        <rect key="frame" x="98" y="61" width="444" height="21"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="这将更改应用程序的短版本" drawsBackground="YES" id="Y13-6l-O4U">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a8r-Py-WHA">
-                        <rect key="frame" x="6" y="64" width="124" height="16"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="App Short Version:" id="ksF-cb-1aW">
+                        <rect key="frame" x="6" y="64" width="86" height="16"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="App 短版本" id="ksF-cb-1aW">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <button toolTip="Don't add get-task-allow entitlement, as it might break certain apps" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vp1-aK-9A4">
-                        <rect key="frame" x="390" y="89" width="134" height="18"/>
-                        <buttonCell key="cell" type="check" title="No get-task-allow" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="WUb-nf-ekk">
+                        <rect key="frame" x="356" y="89" width="144" height="18"/>
+                        <buttonCell key="cell" type="check" title="禁止 get-task-allow" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="WUb-nf-ekk">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0wX-PD-5Qx">
-                        <rect key="frame" x="6" y="35" width="124" height="16"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="App Icon File:" id="BBc-u6-KSk">
+                        <rect key="frame" x="6" y="35" width="86" height="16"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="App 图标" id="BBc-u6-KSk">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ktK-au-tgt" userLabel="Input App Icon Text">
-                        <rect key="frame" x="136" y="32" width="275" height="21"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="File path or URL accepted" drawsBackground="YES" usesSingleLineMode="YES" id="NdM-JD-bYu">
+                        <rect key="frame" x="98" y="32" width="332" height="21"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="文件路径或链接" drawsBackground="YES" usesSingleLineMode="YES" id="NdM-JD-bYu">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4wW-tX-zfG" userLabel="Browse App Icon">
-                        <rect key="frame" x="412" y="26" width="79" height="32"/>
-                        <buttonCell key="cell" type="push" title="Browse" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="y3s-Id-8zZ">
+                        <rect key="frame" x="431" y="26" width="62" height="32"/>
+                        <buttonCell key="cell" type="push" title="选择" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="y3s-Id-8zZ">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -482,7 +482,7 @@
                 </connections>
             </view>
             <contentBorderThickness minY="25"/>
-            <point key="canvasLocation" x="313" y="392"/>
+            <point key="canvasLocation" x="313" y="372.5"/>
         </window>
     </objects>
 </document>
